@@ -1,0 +1,29 @@
+{
+  "name": "gleiten",
+  "version": "0.0.1",
+  "description": "easily create html animations based on vertical scroll position of the page.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "prepare": "rollup -c"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loreanvictor/gleiten.git"
+  },
+  "keywords": [
+    "html",
+    "scroll",
+    "animation"
+  ],
+  "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loreanvictor/gleiten/issues"
+  },
+  "homepage": "https://github.com/loreanvictor/gleiten#readme",
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "rollup": "^1.0.0"
+  }
+}
