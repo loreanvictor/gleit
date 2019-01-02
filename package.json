@@ -23,8 +23,11 @@
   },
   "homepage": "https://github.com/loreanvictor/gleiten#readme",
   "devDependencies": {
+    "chai": "^4.2.0",
     "mocha": "^5.2.0",
     "rollup": "^1.0.0",
+    "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-uglify": "^6.0.0"
-  }
+  },
+  "dependencies": {}
 }

@@ -1,3 +1,3 @@
 describe('Gleiten', ()=> {
-  it('should be done', done => done());
+  require('./linear_ext');
 });
