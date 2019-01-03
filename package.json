@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "easily create html animations based on vertical scroll position of the page.",
   "main": "index.js",
+  "files": ["dist"],
   "scripts": {
     "test": "mocha",
     "prepare": "rollup -c"

@@ -2,7 +2,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import commonjs from 'rollup-plugin-commonjs';
 
 export default {
-  input: 'index.js',
+  input: 'gleiten.js',
   plugins: [
     commonjs(),
     uglify(),
