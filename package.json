@@ -4,6 +4,7 @@
   "description": "easily create html animations based on vertical scroll position of the page.",
   "main": "index.js",
   "files": ["dist"],
+  "unpkg": "dist/gleiten.min.js",
   "scripts": {
     "test": "mocha",
     "prepare": "rollup -c"
