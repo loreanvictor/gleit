@@ -8,7 +8,7 @@ export default {
     uglify(),
   ],
   output: {
-    file: 'dist/gleiten.js',
+    file: 'dist/gleiten.min.js',
     format: 'iife',
     name: 'gleiten'
   }
