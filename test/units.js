@@ -81,5 +81,12 @@ describe('units', () => {
       expect(() => units.position(ref, '', { current: 'x', total: 'tt', window: 'w' })).to.throw;
       expect(() => units.position(ref, '', { current: 'xx', total: 't', window: 'w' })).to.throw;
     });
+
+    it('should throw proper error when unknown unit is given.', () => {
+      let ref = { scrollTop: 32, scrollHeight: 512, clientHeight: 256 };
+
+      expect(() => units.position(ref, 'px')).not.to.throw;
+      expect(() => units.position(ref, 'em')).to.throw;
+    });
   });
 });

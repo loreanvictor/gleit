@@ -1,9 +1,22 @@
-import linear_ext from './lib/linear_ext';
+import { position } from './lib/units';
 
 function gleiten() {}
 
-gleiten.prototype.init = function() {
-  console.log(linear_ext.single([0, 0], [1, 1])(0.2));
+gleiten.prototype.init = function(ref) {
+  if (ref) {
+    ref.addEventListener('scroll', function() {
+      console.log(position(ref, 'px'));
+      console.log(position(ref, '%'));
+      console.log(position(ref, 'vh'));
+    });
+  }
+  else {
+    window.addEventListener('scroll', function() {
+      console.log(position(document.body, 'px'));
+      console.log(position(document.body, '%'));
+      console.log(position(document.body, 'vh'));
+    });
+  }
 }
 
 export default new gleiten();
