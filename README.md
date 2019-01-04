@@ -8,11 +8,9 @@ super easy interactive html animations, based on vertical scroll, mouse position
 
 _coming soon_
 
-## how to use
+## basic examples
 
-### basic examples
-
-#### standard way
+### standard way
 
 ```html
 <p data-gleiten='{"0vh": {"rotate":"0deg"}, "50vh": {"rotate": "90deg"}}'>hellow</p>
@@ -28,9 +26,7 @@ window.addEventListener('load', function() {
 
 the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh`.
 
----
-
-#### multiple animations
+### multiple animations
 
 ```html
 <p data-gleiten='{"0vh": {"scale": 1}, "50vh": {"scale": 2}}'>hellow</p>
@@ -52,9 +48,7 @@ the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh
 
 the first `<p>`(_hellow_) scales up and rotates, and the second `<p>`(_world!_) only rotates, as the page scrolls from `0vh` to `50vh`.
 
----
-
-#### bound to element scroll instead of document
+### bound to element scroll instead of document
 
 ```html
 <div id="holder" style="height:50vh; overflow: auto">
