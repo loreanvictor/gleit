@@ -1,22 +1,9 @@
-import { position } from './lib/units';
+import animate from './lib/animate';
+import render from './lib/render';
 
 function gleiten() {}
 
-gleiten.prototype.init = function(ref) {
-  if (ref) {
-    ref.addEventListener('scroll', function() {
-      console.log(position(ref, 'px'));
-      console.log(position(ref, '%'));
-      console.log(position(ref, 'vh'));
-    });
-  }
-  else {
-    window.addEventListener('scroll', function() {
-      console.log(position(document.body, 'px'));
-      console.log(position(document.body, '%'));
-      console.log(position(document.body, 'vh'));
-    });
-  }
-}
+gleiten.prototype.animateProp = animate;
+gleiten.prototype.render = render;
 
 export default new gleiten();
