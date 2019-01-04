@@ -11,7 +11,7 @@ describe('animate()', () => {
       1: { a: 1, b: 0 },
     };
 
-    let tick = animate(frames, transform);
+    let tick = animate(frames)(transform);
     let v1 = tick({x: .75, t: 1, w: 1});
     let v2 = tick({x: .25, t: 1, w: 1});
 
@@ -29,7 +29,7 @@ describe('animate()', () => {
       2: { a: 2, b: 0 },
     };
 
-    let tick = animate(frames, transform);
+    let tick = animate(frames)(transform);
     let v = tick({x: 1, t: 1, w: 1});
 
     v.a.should.equal(1);
@@ -44,7 +44,7 @@ describe('animate()', () => {
       2: { b: 0 },
     };
 
-    let tick = animate(frames, transform);
+    let tick = animate(frames)(transform);
     let v1 = tick({x: .5, t: 1, w: 1});
     let v2 = tick({x: 1.5, t: 1, w: 1});
 
@@ -61,7 +61,7 @@ describe('animate()', () => {
       '100px': { a: 0 },
     };
 
-    animate(frames, transform)({x: 75, t: 2876, w: 100}).a.should.equal(.25);
+    animate(frames)(transform)({x: 75, t: 2876, w: 100}).a.should.equal(.25);
   });
 
   it('should properly handle property values with units and values without.', () => {
@@ -71,7 +71,7 @@ describe('animate()', () => {
       1: { a: '1kg', b: 1 }
     };
 
-    let v = animate(frames, transform)({x: .25, t: 1, w: 1});
+    let v = animate(frames)(transform)({x: .25, t: 1, w: 1});
     v.a.should.equal('1.75kg');
     v.b.should.equal(.25);
   });
@@ -82,7 +82,7 @@ describe('animate()', () => {
       '128px': { a : 3, b: '50vw' }
     };
 
-    let v = animate(frames)({scrollTop: 64, scrollHeight: 1640, clientHeight: 860 });
+    let v = animate(frames)()({scrollTop: 64, scrollHeight: 1640, clientHeight: 860 });
     v.a.should.equal(2);
     v.b.should.equal('75vw');
   });

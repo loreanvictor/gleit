@@ -27,6 +27,10 @@ describe('units', () => {
       expect(units.decompose('23')[1]).to.not.exist;
     });
 
+    it('should properly handle negative numbers.', () => {
+      units.decompose('-20px')[0].should.equal(-20);
+    });
+
     it('should throw proper errors on improper input.', () => {
       expect(() => units.decompose('24 25')).to.throw;
       expect(() => units.decompose('px32.2')).to.throw;

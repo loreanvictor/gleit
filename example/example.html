@@ -2,11 +2,18 @@
   <script src="../dist/gleiten.min.js"></script>
 </head>
 <body>
-  <div style="height:100vh; overflow: auto">
-    <div style="height: 200vh">
-      <p id="main">hellow</p>
-    </div>
+  <style>
+    p { text-align: center; }
+    #holder { height: 100vh; }
+  </style>
+  <div style="height: 50vh"></div>
+  <div id="holder">
+      <p data-gleiten='{"0vh": {"translateY":"0px"}, "50vh": {"translateY": "-100px"}}'>hellow</p>
+      <p>world!</p>
   </div>
   <script>
+    window.addEventListener('load', function() {
+      gleiten.animate().on(gleiten.verticalScroll());
+    });
   </script>
 </body>
