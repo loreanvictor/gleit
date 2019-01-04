@@ -10,7 +10,7 @@ _coming soon_
 
 ## how to use
 
-### basic usage
+### basic examples
 
 ```html
 <p data-gleiten='{"0vh": {"rotate":"0deg"}, "50vh": {"rotate": "90deg"}}'>hellow</p>
