@@ -14,6 +14,10 @@
   <script>
     window.addEventListener('load', function() {
       gleiten.animate().on(gleiten.verticalScroll());
+      gleiten.animate(document.getElementsByTagName('p'), {
+        '0vh': {rotate: '0deg'},
+        '50vh': {rotate: '90deg'}
+      }).on(gleiten.verticalScroll());
     });
   </script>
 </body>

@@ -4,6 +4,7 @@ import scroll from './lib/scroll';
 
 
 import './polyfill/map';
+import './polyfill/assign';
 import './polyfill/is_array';
 import './polyfill/request_animation_frame';
 
@@ -58,7 +59,13 @@ gleiten.prototype.animate = function(elements, frames) {
       window.requestAnimationFrame(function() {
         for (var index in animations) {
           var animation = animations[index];
-          _this.renderStyles(animation[1](ref))(animation[0]);
+          var computedStyles = animation[1](ref);
+          var element = animation[0];
+          var prior = element.getAttribute('data-gleiten-computed');
+          if (prior)
+            computedStyles = Object.assign({}, JSON.parse(prior), computedStyles);
+          element.setAttribute('data-gleiten-computed', JSON.stringify(computedStyles));
+          _this.renderStyles(computedStyles)(animation[0]);
         }
       });
     }
