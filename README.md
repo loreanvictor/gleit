@@ -52,7 +52,6 @@ the first `<p>`(_hellow_) scales up and rotates, and the second `<p>`(_world!_) 
 
 ```html
 <div id="holder" style="height:50vh; overflow: auto">
-  <div style="height: 40vh"></div>
   <div style="height: 100vh">
     <p data-gleiten='{"0vh": {"scale": 1}, "50vh": {"scale": 2}}'>hellow</p>
   </div>
