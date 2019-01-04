@@ -6,5 +6,7 @@ easily create html animations based on vertical scroll position of the page.
 ## how to use
 
 ```javascript
-gleiten.init();
+  window.addEventListener('load', function() {
+    gleiten.animate().on(gleiten.verticalScroll());
+  });
 ```
