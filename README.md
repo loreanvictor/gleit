@@ -28,6 +28,8 @@ window.addEventListener('load', function() {
 
 the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh`.
 
+---
+
 #### multiple animations
 
 ```html
@@ -49,6 +51,8 @@ the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh
 ```
 
 the first `<p>`(_hellow_) scales up and rotates, and the second `<p>`(_world!_) only rotates, as the page scrolls from `0vh` to `50vh`.
+
+---
 
 #### bound to element scroll instead of document
 
