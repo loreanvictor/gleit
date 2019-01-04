@@ -23,6 +23,10 @@ describe('units', () => {
       units.decompose('29.5.4')[1].should.equal('.4');
     });
 
+    it('should handle non-existing units with giving "undefined" as the unit.', () => {
+      expect(units.decompose('23')[1]).to.not.exist;
+    });
+
     it('should throw proper errors on improper input.', () => {
       expect(() => units.decompose('24 25')).to.throw;
       expect(() => units.decompose('px32.2')).to.throw;
@@ -31,12 +35,13 @@ describe('units', () => {
   });
 
   describe('units.position()', () => {
-    it('should give out the raw position for \'px\' and \'\' units based on given transform.', () => {
+    it('should give out the raw position for \'px\' and \'\' units or "undefined" based on given transform.', () => {
       let ref = { x : 10, t: 200, w: 50 };
       let transform = { current: 'x', total: 't', window: 'w' };
 
       units.position(ref, '', transform).should.equal(10);
       units.position(ref, 'px', transform).should.equal(10);
+      units.position(ref, undefined, transform).should.equal(10);
     });
 
     it('should give out the relative percentage position for \'%\' units based on given transform.', () => {
@@ -55,7 +60,7 @@ describe('units', () => {
       units.position(ref, 'w', transform).should.equal(1.5);
     });
 
-    it('should default back to current="scrollTop", total="scrollHeight" & window="clientHeight" if no transform is given.', () => {
+    it('should fall back to current="scrollTop", total="scrollHeight" & window="clientHeight" if no transform is given.', () => {
       let ref = { scrollTop: 32, scrollHeight: 512, clientHeight: 256 };
 
       units.position(ref, 'px').should.equal(32);
