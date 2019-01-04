@@ -12,14 +12,13 @@ _coming soon_
 
 ### basic usage
 
-JS:
-```javascript
-gleiten.animate().on(gleiten.verticalScroll());
-```
-
-HTML:
 ```html
 <p data-gleiten='{"0vh": {"rotate":"0deg"}, "50vh": {"rotate": "90deg"}}'>hellow</p>
+```
+```javascript
+window.addEventListener('load', function() {
+  gleiten.animate().on(gleiten.verticalScroll());
+});
 ```
 
 the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh`.
