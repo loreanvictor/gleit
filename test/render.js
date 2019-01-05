@@ -222,6 +222,23 @@ describe('render()', () => {
     render({ opacity: .25 })(el);
   });
 
+  it('should properly set 0 unit-less values on the element.', done => {
+    let el = {
+      setAttribute: (attr, val) => {
+        attr.should.equal('style');
+
+        let split = val.trim().split(/(opacity\s*\:\s*0\s*\;?)/);
+        split.length.should.equal(3);
+        split[0].should.equal('');
+        split[1].length.should.not.equal(0);
+        split[2].should.equal('');
+        done();
+      }
+    };
+
+    render({ opacity: 0 })(el);
+  });
+
   it('should properly set combination of values on element.', done => {
     let el = {
       setAttribute: (attr, val) => {
