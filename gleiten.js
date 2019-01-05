@@ -1,6 +1,9 @@
 import animate from './lib/animate';
 import render from './lib/render';
+
 import scroll from './lib/scroll';
+import hscroll from './lib/hscroll';
+import mouse from './lib/mouse';
 
 
 import './polyfill/map';
@@ -13,7 +16,10 @@ function gleiten() {}
 
 gleiten.prototype.animateProp = animate;
 gleiten.prototype.renderStyles = render;
+
 gleiten.prototype.verticalScroll = scroll;
+gleiten.prototype.horizontalScroll = hscroll;
+gleiten.prototype.mouseMove = mouse;
 
 gleiten.prototype.animate = function(elements, frames) {
   if (!elements) {

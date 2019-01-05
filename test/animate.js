@@ -76,13 +76,13 @@ describe('animate()', () => {
     v.b.should.equal(.25);
   });
 
-  it('should fall back to current="scrollTop", total="scrollHeight" & window="clientHeight" if no transform is given.', () => {
+  it('should fall back to current="current", total="total" & window="window" if no transform is given.', () => {
     let frames = {
       '0px': { a : 1, b: '100vw' },
       '128px': { a : 3, b: '50vw' }
     };
 
-    let v = animate(frames)()({scrollTop: 64, scrollHeight: 1640, clientHeight: 860 });
+    let v = animate(frames)()({current: 64, total: 1640, window: 860 });
     v.a.should.equal(2);
     v.b.should.equal('75vw');
   });

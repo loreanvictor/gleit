@@ -37,9 +37,9 @@ describe('linear_ext', () => {
     });
 
     it('should throw proper error if invalid input is given.', () => {
-      expect(() => linear_ext.single()).to.throw;
-      expect(() => linear_ext.single(2, 'hellow')).to.throw;
-      expect(() => linear_ext.single([0])).to.throw;
+      expect(() => linear_ext.single()).to.throw();
+      expect(() => linear_ext.single(2, 'hellow')).to.throw();
+      expect(() => linear_ext.single([0])).to.throw();
     })
   });
 

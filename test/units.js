@@ -64,8 +64,8 @@ describe('units', () => {
       units.position(ref, 'w', transform).should.equal(1.5);
     });
 
-    it('should fall back to current="scrollTop", total="scrollHeight" & window="clientHeight" if no transform is given.', () => {
-      let ref = { scrollTop: 32, scrollHeight: 512, clientHeight: 256 };
+    it('should fall back to current="current", total="total" & window="window" if no transform is given.', () => {
+      let ref = { current: 32, total: 512, window: 256 };
 
       units.position(ref, 'px').should.equal(32);
       units.position(ref, '%').should.equal(6.25);
@@ -76,19 +76,26 @@ describe('units', () => {
     it('should throw proper error when an improper transform is passed.', () => {
       let ref = { x : 75, t: 200, w: 50 };
 
-      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'w' })).not.to.throw;
-      expect(() => units.position(ref, '', { current: 'x', total: 't', win: 'w' })).to.throw;
-      expect(() => units.position(ref, '', { current: 'x', t: 't', window: 'w' })).to.throw;
-      expect(() => units.position(ref, '', { curr: 'x', total: 't', window: 'w' })).to.throw;
+      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'w' })).not.to.throw();
+      expect(() => units.position(ref, '', { current: 'x', total: 't', win: 'w' })).to.throw();
+      expect(() => units.position(ref, '', { current: 'x', t: 't', window: 'w' })).to.throw();
+      expect(() => units.position(ref, '', { curr: 'x', total: 't', window: 'w' })).to.throw();
     });
 
-    it('should throw proper error when the transform does not match the ref.', () => {
+    it('should throw proper error when the transform does not match the ref. should ignore "window" not being provided.', () => {
       let ref = { x: 75, t: 200, w: 50 };
 
-      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'w' })).not.to.throw;
-      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'ww' })).to.throw;
-      expect(() => units.position(ref, '', { current: 'x', total: 'tt', window: 'w' })).to.throw;
-      expect(() => units.position(ref, '', { current: 'xx', total: 't', window: 'w' })).to.throw;
+      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'w' })).not.to.throw();
+      expect(() => units.position(ref, '', { current: 'x', total: 't', window: 'ww' })).not.to.throw();
+      expect(() => units.position(ref, '', { current: 'x', total: 'tt', window: 'w' })).to.throw();
+      expect(() => units.position(ref, '', { current: 'xx', total: 't', window: 'w' })).to.throw();
+    });
+
+    it('should fall back on "total" when "window" is not provided.', () => {
+      let ref = { x: 50, t: 200 };
+      let transform = { current: 'x', total: 't', window: 'w' };
+
+      units.position(ref, 'vw', transform).should.equal(25);
     });
 
     it('should throw proper error when unknown unit is given.', () => {
