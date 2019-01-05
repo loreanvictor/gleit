@@ -13,12 +13,15 @@ _coming soon_
 ### standard way
 
 ```html
-<p data-gleiten='{"0vh": {"rotate":"0deg", "opacity": 1}, "50vh": {"rotate": "90deg", "opacity": 0}}'>hellow</p>
+<p data-gleiten='{"0vh": {"rotate": "90deg", "opacity": 1},
+                  "20vh": {"rotate": "0deg", "opacity": 0}}'>hellow</p>
 
 <script>
 window.addEventListener('load', function() {
   
-  gleiten.animate().on(gleiten.verticalScroll());
+  gleiten
+    .animate()
+    .on(gleiten.verticalScroll());
   
 });
 </script>
@@ -35,12 +38,16 @@ the `<p>` element will rotate 90 degrees and fades away as the page scrolls from
 <script>
   window.addEventListener('load', function() {
   
-    gleiten.animate().on(gleiten.verticalScroll());
+    gleiten
+      .animate()
+      .on(gleiten.verticalScroll());
   
-    gleiten.animate(document.getElementsByTagName('p'), {
-      '0vh': {rotate: '0deg'},
-      '50vh': {rotate: '90deg'}
-    }).on(gleiten.verticalScroll());
+    gleiten
+      .animate(document.getElementsByTagName('p'), {
+        '0vh': {rotate: '0deg'},
+        '50vh': {rotate: '90deg'}
+      })
+      .on(gleiten.verticalScroll());
   
   });
 </script>
@@ -60,7 +67,9 @@ the first `<p>`(_hellow_) scales up and rotates, and the second `<p>`(_world!_) 
 <script>
   window.addEventListener('load', function() {
   
-    gleiten.animate().on(gleiten.verticalScroll(document.getElementById('holder')));
+    gleiten
+      .animate()
+      .on(gleiten.verticalScroll(document.getElementById('holder')));
   
   });
 </script>
