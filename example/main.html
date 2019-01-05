@@ -1,0 +1,45 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+  <script src="https://unpkg.com/gleit"></script>
+  <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
+
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div class="full c">
+    <div class="text">
+      <h1>GLEIT</h1>
+      <h2>super easy interactive html animations.</h2>
+      <p>
+        with <b>GLEIT</b> you can easily do animations based on page scroll, mouse movement, etc.
+      </p>
+      <pre>
+<code class="html">&lt;script src="https://unpkg.com/gleit"&gt;&lt;/script&gt;</code></pre>
+      <pre>
+<code class="html">&lt;p data-gleit='{
+  "0vh": {"scale": 1},
+  "20vh": {"scale": 2}}'&gt;hellow&lt;/p&gt;
+
+&lt;script&gt;
+  window.addEventListener('load', function() {
+    gleit.animate().on(gleit.verticalScroll());
+  });
+&lt;/script&gt;</code></pre>
+    <a href="https://github.com/loreanvictor/gleit/blob/master/README.md" target="_blank">
+      MORE EXAMPLES
+    </a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <a href="https://github.com/loreanvictor/gleit" target="_blank">GITHUB</a>
+    |
+    <a href="https://www.npmjs.com/package/gleit" target="_blank">NPM</a>
+  </div>
+</body>

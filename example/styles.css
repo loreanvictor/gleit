@@ -1,0 +1,51 @@
+* { font-family: 'Share Tech Mono', monospace; }
+html, body { padding: 0 !important; margin: 0 !important; }
+
+a {
+  color: black !important;
+  text-decoration: none !important;
+  outline: none !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: background .15s, color .15s;
+}
+
+a:hover {
+  background: black;
+  color: white !important;
+}
+
+.c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  width: 512px;
+  max-width: 80vw;
+}
+
+.centered { text-align: center; }
+.full { min-height: 100vh; }
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
+.hljs {
+  background: #212121;
+  color: #e0e0e0;
+  border-radius: 3px;
+}
+
+.hljs-tag { color: #9e9e9e; }
+.hljs-attr { color: #ffca28; }
+.hljs-string { color: #9ccc65; }
+.hljs-built_in,
+.hljs-function { color: #26a69a; }
