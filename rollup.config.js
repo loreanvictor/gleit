@@ -2,14 +2,14 @@ import { uglify } from 'rollup-plugin-uglify';
 import commonjs from 'rollup-plugin-commonjs';
 
 export default {
-  input: 'gleiten.js',
+  input: 'gleit.js',
   plugins: [
     commonjs(),
     uglify(),
   ],
   output: {
-    file: 'dist/gleiten.min.js',
+    file: 'dist/gleit.min.js',
     format: 'iife',
-    name: 'gleiten'
+    name: 'gleit'
   }
 }

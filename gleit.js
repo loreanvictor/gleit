@@ -13,20 +13,20 @@ import './polyfill/is_array';
 import './polyfill/request_animation_frame';
 
 
-function gleiten() {}
+function gleit() {}
 
-gleiten.prototype.animateProp = animate;
-gleiten.prototype.renderStyles = render;
+gleit.prototype.animateProp = animate;
+gleit.prototype.renderStyles = render;
 
-gleiten.prototype.verticalScroll = scroll;
-gleiten.prototype.horizontalScroll = hscroll;
-gleiten.prototype.mouseMove = mouse;
-gleiten.prototype.timeline = time;
+gleit.prototype.verticalScroll = scroll;
+gleit.prototype.horizontalScroll = hscroll;
+gleit.prototype.mouseMove = mouse;
+gleit.prototype.timeline = time;
 
-gleiten.prototype.animate = function(elements, frames) {
+gleit.prototype.animate = function(elements, frames) {
   if (!elements) {
     if (document.querySelector) {
-      return this.animate(document.querySelector('[data-gleiten]'), frames);
+      return this.animate(document.querySelector('[data-gleit]'), frames);
     }
   }
 
@@ -44,9 +44,9 @@ gleiten.prototype.animate = function(elements, frames) {
     var _animate = animate;
     var _el = elements[index];
 
-    if (!_animate && _el.hasAttribute('data-gleiten')) {
+    if (!_animate && _el.hasAttribute('data-gleit')) {
       try {
-        var _frames = JSON.parse(_el.getAttribute('data-gleiten'));
+        var _frames = JSON.parse(_el.getAttribute('data-gleit'));
         _animate = this.animateProp(_frames);
       }
       catch(err) {}
@@ -69,10 +69,10 @@ gleiten.prototype.animate = function(elements, frames) {
           var animation = animations[index];
           var computedStyles = animation[1](ref);
           var element = animation[0];
-          var prior = element.getAttribute('data-gleiten-computed');
+          var prior = element.getAttribute('data-gleit-computed');
           if (prior)
             computedStyles = Object.assign({}, JSON.parse(prior), computedStyles);
-          element.setAttribute('data-gleiten-computed', JSON.stringify(computedStyles));
+          element.setAttribute('data-gleit-computed', JSON.stringify(computedStyles));
           _this.renderStyles(computedStyles)(animation[0]);
         }
       });
@@ -86,4 +86,4 @@ gleiten.prototype.animate = function(elements, frames) {
   }
 }
 
-export default new gleiten();
+export default new gleit();
