@@ -13,7 +13,7 @@ _coming soon_
 ### standard way
 
 ```html
-<p data-gleiten='{"0vh": {"rotate":"0deg"}, "50vh": {"rotate": "90deg"}}'>hellow</p>
+<p data-gleiten='{"0vh": {"rotate":"0deg", "opacity": 1}, "50vh": {"rotate": "90deg", "opacity": 0}}'>hellow</p>
 
 <script>
 window.addEventListener('load', function() {
@@ -24,7 +24,7 @@ window.addEventListener('load', function() {
 </script>
 ```
 
-the `<p>` element will rotate 90 degrees as the page scrolls from `0vh` to `50vh`.
+the `<p>` element will rotate 90 degrees and fades away as the page scrolls from `0vh` to `50vh`.
 
 ### multiple animations
 
