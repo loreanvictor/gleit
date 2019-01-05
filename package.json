@@ -3,7 +3,9 @@
   "version": "0.9.0",
   "description": "super easy interactive html animations.",
   "main": "index.js",
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "unpkg": "dist/gleiten.min.js",
   "scripts": {
     "test": "mocha",
