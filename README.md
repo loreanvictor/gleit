@@ -2,8 +2,6 @@
 
 super easy interactive html animations, based on vertical scroll, mouse position, etc.
 
-**NOTE**: if you just want some animation on elements when they are "scrolled into view", there are better libraries to achieve that such as [AoS](https://michalsnik.github.io/aos/). this library helps you design interactive animations based on parameters such as body scroll position, mouse position, etc.
-
 ## how to install
 
 _coming soon_
