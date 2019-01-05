@@ -30,12 +30,12 @@ the `<p>` element will rotate 90 degrees and fades away as the page scrolls from
 ### bound to mouse motion
 
 ```html
-<p>hellow</p>
+<p id="main">hellow</p>
 
 <script>
   window.addEventListener('load', function() {
     gleiten
-      .animate(document.getElementsByTagName('p'), {
+      .animate(document.getElementById('main'), {
         '0vw': {translateX: '5vw', scale: 1.5},
         '50vw': { scale: 1 },
         '100vw': {translateX: '-5vw', scale: 1.5}
@@ -43,7 +43,7 @@ the `<p>` element will rotate 90 degrees and fades away as the page scrolls from
       .on(gleiten.mouseMove.client.x);
 
     gleiten
-      .animate(document.getElementsByTagName('p'), {
+      .animate(document.getElementById('main'), {
         '0vh': {translateY: '5vh', opacity: 0 },
         '50vh': { opacity: 1 },
         '100vh': {translateY: '-5vh', opacity: 0 }
@@ -53,7 +53,7 @@ the `<p>` element will rotate 90 degrees and fades away as the page scrolls from
 </script>
 ```
 
-the `<p>` element will move around, scale up and down and fade in and out as the mouse moves.
+the `<p#main>` element will move around, scale up and down and fade in and out as the mouse moves.
 
 ### multiple animations
 
