@@ -6,7 +6,7 @@
   "files": [
     "dist"
   ],
-  "unpkg": "dist/gleiten.min.js",
+  "unpkg": "dist/gleit.min.js",
   "scripts": {
     "test": "mocha",
     "prepare": "rollup -c"
@@ -17,8 +17,10 @@
   },
   "keywords": [
     "html",
+    "animation",
     "scroll",
-    "animation"
+    "interactive",
+    "mouse"
   ],
   "author": "Eugene Ghanizadeh Khoub <ghanizadeh.eugene@gmail.com>",
   "license": "MIT",
