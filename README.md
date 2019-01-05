@@ -27,6 +27,34 @@ window.addEventListener('load', function() {
 
 the `<p>` element will rotate 90 degrees and fades away as the page scrolls from `0vh` to `50vh`.
 
+### bound to mouse motion
+
+```html
+<p id="main">hellow</p>
+
+<script>
+  window.addEventListener('load', function() {
+    gleiten
+      .animate(document.getElementById('main'), {
+        '0vw': {translateX: '5vw', scale: 1.5},
+        '50vw': { scale: 1 },
+        '100vw': {translateX: '-5vw', scale: 1.5}
+      })
+      .on(gleiten.mouseMove.client.x);
+
+    gleiten
+      .animate(document.getElementById('main'), {
+        '0vh': {translateY: '5vh', opacity: 0 },
+        '50vh': { opacity: 1 },
+        '100vh': {translateY: '-5vh', opacity: 0 }
+      })
+      .on(gleiten.mouseMove.client.y);
+  });
+</script>
+```
+
+the `<p#main>` element will move around, scale up and down and fade in and out as the mouse moves.
+
 ### multiple animations
 
 ```html
