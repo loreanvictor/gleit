@@ -1,7 +1,7 @@
 {
   "name": "gleiten",
-  "version": "0.0.1",
-  "description": "easily create html animations based on vertical scroll position of the page.",
+  "version": "0.9.0",
+  "description": "super easy interactive html animations.",
   "main": "index.js",
   "files": ["dist"],
   "unpkg": "dist/gleiten.min.js",
