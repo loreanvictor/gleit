@@ -6,7 +6,7 @@ super easy interactive html animations, based on vertical scroll, mouse position
 
 _coming soon_
 
-## basic examples
+## how to use
 
 ### standard way
 
