@@ -39,7 +39,7 @@ describe('units', () => {
   });
 
   describe('units.position()', () => {
-    it('should give out the raw position for \'px\' and \'\' units or "undefined" based on given transform.', () => {
+    it('should give out the raw position for \'px\', \'ms\' and \'\' units or "undefined" based on given transform.', () => {
       let ref = { x : 10, t: 200, w: 50 };
       let transform = { current: 'x', total: 't', window: 'w' };
 

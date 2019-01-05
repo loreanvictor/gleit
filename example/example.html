@@ -6,32 +6,19 @@
     p { text-align: center; }
   </style>
   <div style="height: 50vh"></div>
-  <div id="holder" style="width:150vw">
+  <div id="holder" style="">
     <!-- <div style="height: 40vh"></div> -->
     <!-- <div style="height: 100vh"> -->
-      <p data-gleiten='{"0vw": {"rotate": "90deg", "opacity": 1},
-                        "100vw": {"rotate": "0deg", "opacity": 0}}'>hellow</p>
-    <!-- <p>hellow</p> -->
+    <p data-gleiten='{"0s": {"rotateY": "90deg", "scale": 1},
+                      ".25s": {"rotateY": "0deg", "scale": 2}}'>hellow</p>
+    <!-- <p id="main">hellow</p> -->
     <!-- </div>-->
   </div>
   <script>
     window.addEventListener('load', function() {
-      gleiten.animate().on(gleiten.horizontalScroll());
-      /*
-      gleiten
-        .animate(document.getElementsByTagName('p'), {
-          '0vw': {translateX: '5vw'},
-          '100vw': {translateX: '-5vw'}
-        })
-        .on(gleiten.mouseMove.client.x);
-
-      gleiten
-        .animate(document.getElementsByTagName('p'), {
-          '0vh': {translateY: '5vh'},
-          '100vh': {translateY: '-5vh'}
-        })
-        .on(gleiten.mouseMove.client.y);
-      */
+      gleiten.animate().on(gleiten.timeline('.2s', {
+        bounce: true
+      }));
     });
   </script>
 </body>
