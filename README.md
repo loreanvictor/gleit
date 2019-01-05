@@ -102,3 +102,19 @@ the first `<p>`(_hellow_) scales up and rotates, and the second `<p>`(_world!_) 
 ```
 
 will scale the `<p>` element up, but the animation is bound to scrolling of `#holder` element instead of body (body doesn't scroll).
+
+### bound to a timeline
+
+```html
+<p data-gleiten='{"0s": {"scale": 1}, "1s": {"scale": 2}}'>hellow</p>
+
+<script>
+  window.addEventListener('load', function() {
+  
+    gleiten
+      .animate()
+      .on(gleiten.timeline('2s', { bounce: true }));
+  
+  });
+</script>
+```
