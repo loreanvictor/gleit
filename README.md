@@ -14,7 +14,7 @@ _coming soon_
 
 ```html
 <p data-gleiten='{"0vh": {"rotate": "90deg", "opacity": 1},
-                  "20vh": {"rotate": "0deg", "opacity": 0}}'>hellow</p>
+                  "50vh": {"rotate": "0deg", "opacity": 0}}'>hellow</p>
 
 <script>
 window.addEventListener('load', function() {
