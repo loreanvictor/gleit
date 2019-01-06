@@ -134,6 +134,10 @@ will scale the `<p>` element up, but the animation is bound to scrolling of `#ho
 
 ### how it generally works
 
+```javascript
+gleit.animate(<target(s)>[optional], <animation>[optional]).on(<animation ref>);
+```
+
 for using `gleit`, you must first create an animation object using `gleit.animate()` function, and then bind that animation to one or more animation references (animation refs in short) using the `.on()` function on the animation object. for animation refs, you can use built-in refs in `gleit` such as `gleit.verticalScroll()` or `gleit.mouseMove.client.x`, or you can build your own custom animation refs based on other user interactions or composite interactions (see below).
 
 animation refs bind to a specific event (such as page scroll or mouse movement). on each trigger of the event, a generated animation tick function will be invoked on a _ref object_ provided by the animation ref itself. these objects generally have three properties:
