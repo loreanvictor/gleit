@@ -153,7 +153,7 @@ the generated tick function then uses the ref object to extrapolate certain css 
 ### `gleit.animate(target, frames)`
 
 #### parameter `target`
-_optional_ 
+_optional_  
 can be a single HTML element, an array of elements, an `HTMLCollection` or a `NodeList`.
 ```javascript
 gleit.animate(document.getElementById('<id>'));
@@ -167,7 +167,7 @@ gleit.animate(document.querySelectorAll('[data-gleit]');
 so it will also not work on browsers not supporting `document.querySelectorAll`.
 
 #### parameter `frames`
-_optional_ 
+_optional_  
 the description of the animation frames. the frames object should contain keys for each frame, which should be of the form `<value><unit>`. `<value>` should be a number, and `<unit>` must be either non-present or one of the following:
 
 - `px`
