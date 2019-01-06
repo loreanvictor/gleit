@@ -4,6 +4,8 @@
   "description": "super easy interactive html animations.",
   "main": "gleit.js",
   "files": [
+    "lib",
+    "polyfill",
     "dist"
   ],
   "unpkg": "dist/gleit.min.js",

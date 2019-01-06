@@ -13,25 +13,76 @@
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+  <!-- === animated stuff === -->
+
+  <!-- the orange circle -->
+
+  <div class="circle1"
+    data-gleit='{
+      "0vh": {"scale": 0, "opacity": 0},
+      "10vh": {"opacity": 1},
+      "100vh": {"scale": 1},
+      "200vh": {"scale": 1}, "300vh": {"scale": 0.4}
+    }'></div>
+
   <script>
     window.addEventListener('load', function() {
       gleit.animate().on(gleit.verticalScroll());
     });
   </script>
 
-  <div class="circle1"
-    data-gleit='{
-      "0vh": {"scale": 0, "opacity": 0},
-      "10vh": {"opacity": 1},
-      "100vh": {"scale": 1}
-    }'></div>
+  <style>
+    .circle1 {
+      position: fixed; left: 50vw; top: 50vh;
+      margin-left: -75vmax; margin-top: -75vmax;
+      width: 150vmax; height: 150vmax;
+      border-radius: 150vmax;
+      background: #ffa726; z-index: -1000;
+    }
+  </style>
+
+  <!-- the diamonds -->
+
+  <div class="diamond" id="d1" data-gleit='{"100vh": {"scale": 0, "rotate": "45deg"}, "160vh": {"scale": 1}, "240vh": {"scale": 1}, "300vh": {"scale": 0.3}}'></div>
+  <div class="diamond" id="d2" data-gleit='{"100vh": {"scale": 0, "rotate": "45deg"}, "160vh": {"scale": 1.5}, "240vh": {"scale": 1.5}, "300vh": {"scale": 0.5}}'></div>
+  <div class="diamond" id="d3" data-gleit='{"100vh": {"scale": 0, "rotate": "45deg"}, "160vh": {"scale": 0.85}, "240vh": {"scale": 0.85}, "300vh": {"scale": 0.2}}'></div>
+
+  <script>
+    window.addEventListener('load', function() {
+      gleit.animate(document.getElementsByClassName('diamond'),
+          { '0vw': { translateX: '10vw' }, '100vw': { translateX: '-10vw' }})
+        .on(gleit.mouseMove.client.x);
+
+      gleit.animate(document.getElementsByClassName('diamond'),
+          { '0vh': { translateY: '10vh' }, '100vh': { translateY: '-10vh' }})
+        .on(gleit.mouseMove.client.y);
+    });
+  </script>
+
+  <style>
+    .diamond {
+      position: fixed; width: 10vmax; height: 10vmax;
+      border: 5vmax solid #673ab7; z-index: -999; }
+    .diamond#d1 { left: 10vw; top: 5vh; }
+    .diamond#d2 { left: 20vw; bottom: 5vh; }
+    .diamond#d3 { right: 5vw; top: 40vh; }
+  </style>
+
+  <!-- the pink bar -->
 
   <div id="bar"></div>
+
   <script>
     window.addEventListener('load', function() {
       gleit.animate(document.getElementById('bar'), {
-        "0vh": { rotate: "45deg" },
-        "100vh": { rotate: "135deg" }
+        "10vh": { rotate: "45deg" },
+        "25vh": { rotate: "60deg" },
+        "30vh": { rotate: "60deg" },
+        "40vh": { rotate: "90deg" },
+        "60vh": { rotate: "90deg" },
+        "70vh": { rotate: "120deg" },
+        "75vh": { rotate: "120deg" },
+        "90vh": { rotate: "135deg" }
       }).on(gleit.mouseMove.client.y);
 
       gleit.animate(document.getElementById('bar'), {
@@ -40,6 +91,18 @@
       }).on(gleit.mouseMove.client.x);
     });
   </script>
+
+  <style>
+    #bar {
+      position: fixed; height: 50vmax; width: 200vmax;
+      top: 0vh; right: 0vw; z-index: -1001;
+      background: #ec407a; transform: rotate(45deg);
+    }
+  </style>
+
+  <!-- === the content === -->
+
+  <!-- the intro -->
 
   <div class="full c">
     <div class="text">
@@ -56,18 +119,20 @@
     </div>
   </div>
 
+  <!-- animate on scroll section -->
+
   <div class="full c">
     <div class="text">
       <h2>animate based on page scroll</h2>
       <p>
-        effortlessly create animations based on scrolling of the page or any element.
-        this is the code used to make the animation on this section:
+        this is the code for the orange circle:<br>
+        &gt; obviously run it in a page that scrolls beyond '100vh'
       </p>
       <pre><code class="html">&lt;div class="circle1"
   data-gleit='{
     "0vh": {"scale": 0, "opacity": 0},
-    "20vh": {"opacity": 0.75},
-    "100vh": {"opacity": 1, "scale": 1}
+    "10vh": {"opacity": 1},
+    "100vh": {"scale": 1}
   }'&gt;&lt;/div&gt;
 
 &lt;script&gt;
@@ -82,11 +147,64 @@
     margin-left: -75vmax; margin-top: -75vmax;
     width: 150vmax; height: 150vmax;
     border-radius: 150vmax;
-    background: #78909c; z-index: -1000;
+    background: #ffa726; z-index: -1000;
   }
 &lt;/style&gt;</code></pre>
     </div>
   </div>
+
+  <!-- animate on mouses move section -->
+
+  <div class="full c">
+    <div class="text">
+      <h2>animate based on mouse position</h2>
+      <p>
+        this is the code for the purple diamonds:<br>
+        &gt; obviously this only works on desktop
+      </p>
+      <pre><code class="html">&lt;div class="diamond" id="d1"&gt;&lt;/div&gt;
+&lt;div class="diamond" id="d2"&gt;&lt;/div&gt;
+&lt;div class="diamond" id="d3"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  window.addEventListener('load', function() {
+    gleit.animate(document.getElementsByClassName('diamond'),
+        { '0vw': { translateX: '10vw', rotate: '45deg' },
+          '100vw': { translateX: '-10vw' }})
+      .on(gleit.mouseMove.client.x);
+
+    gleit.animate(document.getElementsByClassName('diamond'),
+        { '0vh': { translateY: '10vh' },
+          '100vh': { translateY: '-10vh' }})
+      .on(gleit.mouseMove.client.y);
+  });
+&lt;/script&gt;
+
+&lt;style&gt;
+  .diamond {
+    position: fixed; width: 10vmax; height: 10vmax;
+    border: 5vmax solid #673ab7; z-index: -999; }
+  .diamond#d1 { left: 10vw; top: 5vh; }
+  .diamond#d2 { left: 20vw; bottom: 5vh; }
+  .diamond#d3 { right: 5vw; top: 40vh; }
+&lt;/style&gt;</code></pre>
+    </div>
+  </div>
+
+  <!-- outro section -->
+
+  <div class="full c">
+    <div class="text">
+      <h3>&gt; looking for more examples?</h3>
+      <p>
+        checkout the source of this page, or read the
+        <a href="https://github.com/loreanvictor/gleit/blob/master/README.md" target="_blank">README</a>
+        for more examples and more detailed documentation.
+      </p>
+    </div>
+  </div>
+
+  <!-- footer -->
 
   <div class="footer">
     <a href="https://github.com/loreanvictor/gleit" target="_blank">GITHUB</a>

@@ -51,29 +51,6 @@ a:hover {
 .hljs-built_in,
 .hljs-function { color: #26a69a; }
 .hljs-selector-class { color: #448aff; }
+.hljs-selector-id { color: #29b6f6; }
 .hljs-attribute { color: #7986cb; }
 .hljs-number { color: #9ccc65; }
-
-.circle1 {
-  position: fixed;
-  left: 50vw;
-  top: 50vh;
-  margin-left: -75vmax;
-  margin-top: -75vmax;
-  width: 150vmax;
-  height: 150vmax;
-  border-radius: 150vmax;
-  background: #ffa726;
-  z-index: -1000;
-}
-
-#bar {
-  position: fixed;
-  height: 50vmax;
-  width: 200vmax;
-  top: 0vh;
-  right: 0vw;
-  background: #ec407a;
-  z-index: -1001;
-  transform: rotate(45deg);
-}
