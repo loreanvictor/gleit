@@ -2,7 +2,7 @@
   "name": "gleit",
   "version": "0.9.1",
   "description": "super easy interactive html animations.",
-  "main": "index.js",
+  "main": "gleit.js",
   "files": [
     "dist"
   ],

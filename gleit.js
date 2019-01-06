@@ -25,14 +25,16 @@ gleit.prototype.timeline = time;
 
 gleit.prototype.animate = function(elements, frames) {
   if (!elements) {
-    if (document.querySelector) {
-      return this.animate(document.querySelector('[data-gleit]'), frames);
+    if (document.querySelectorAll) {
+      return this.animate(document.querySelectorAll('[data-gleit]'), frames);
     }
   }
 
   if (!Array.isArray(elements) &&
       !(elements.constructor && elements.constructor.name &&
-        elements.constructor.name === 'HTMLCollection')) return this.animate([elements], frames);
+        (elements.constructor.name === 'HTMLCollection' ||
+        elements.constructor.name === 'NodeList'
+        ))) return this.animate([elements], frames);
 
   var funcs = [];
   var animate = undefined;

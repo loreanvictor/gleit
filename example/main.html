@@ -1,7 +1,8 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 
-  <script src="https://unpkg.com/gleit"></script>
+  <!-- <script src="https://unpkg.com/gleit"></script> -->
+  <script src="../dist/gleit.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Share+Tech+Mono" rel="stylesheet">
 
   <link rel="stylesheet"
@@ -12,28 +13,78 @@
   <link href="styles.css" rel="stylesheet">
 </head>
 <body>
+  <script>
+    window.addEventListener('load', function() {
+      gleit.animate().on(gleit.verticalScroll());
+    });
+  </script>
+
+  <div class="circle1"
+    data-gleit='{
+      "0vh": {"scale": 0, "opacity": 0},
+      "10vh": {"opacity": 1},
+      "100vh": {"scale": 1}
+    }'></div>
+
+  <div id="bar"></div>
+  <script>
+    window.addEventListener('load', function() {
+      gleit.animate(document.getElementById('bar'), {
+        "0vh": { rotate: "45deg" },
+        "100vh": { rotate: "135deg" }
+      }).on(gleit.mouseMove.client.y);
+
+      gleit.animate(document.getElementById('bar'), {
+        "0vw": { translateX: "100vw" },
+        "100vw": { translateX: "0vw" }
+      }).on(gleit.mouseMove.client.x);
+    });
+  </script>
+
   <div class="full c">
     <div class="text">
       <h1>GLEIT</h1>
       <h2>super easy interactive html animations.</h2>
       <p>
-        with <b>GLEIT</b> you can easily do animations based on page scroll, mouse movement, etc.
+        with <b>GLEIT</b> you can easily do interactive animations based on page scroll, mouse movement, etc.
       </p>
-      <pre>
-<code class="html">&lt;script src="https://unpkg.com/gleit"&gt;&lt;/script&gt;</code></pre>
-      <pre>
-<code class="html">&lt;p data-gleit='{
-  "0vh": {"scale": 1},
-  "20vh": {"scale": 2}}'&gt;hellow&lt;/p&gt;
+      <pre><code class="html">&lt;script src="https://unpkg.com/gleit"&gt;&lt;/script&gt;</code></pre>
+      <p>or</p>
+      <pre><code class="bash">npm i gleit</code></pre>
+      <pre><code class="html">&lt;script src="node_modules/gleit/dist/gleit.min.js"&gt;&lt;/script&gt;</code></pre>
+      <p>scroll down to see examples.</p>
+    </div>
+  </div>
+
+  <div class="full c">
+    <div class="text">
+      <h2>animate based on page scroll</h2>
+      <p>
+        effortlessly create animations based on scrolling of the page or any element.
+        this is the code used to make the animation on this section:
+      </p>
+      <pre><code class="html">&lt;div class="circle1"
+  data-gleit='{
+    "0vh": {"scale": 0, "opacity": 0},
+    "20vh": {"opacity": 0.75},
+    "100vh": {"opacity": 1, "scale": 1}
+  }'&gt;&lt;/div&gt;
 
 &lt;script&gt;
   window.addEventListener('load', function() {
     gleit.animate().on(gleit.verticalScroll());
   });
-&lt;/script&gt;</code></pre>
-    <a href="https://github.com/loreanvictor/gleit/blob/master/README.md" target="_blank">
-      MORE EXAMPLES
-    </a>
+&lt;/script&gt;
+
+&lt;style&gt;
+  .circle1 {
+    position: fixed; left: 50vw; top: 50vh;
+    margin-left: -75vmax; margin-top: -75vmax;
+    width: 150vmax; height: 150vmax;
+    border-radius: 150vmax;
+    background: #78909c; z-index: -1000;
+  }
+&lt;/style&gt;</code></pre>
     </div>
   </div>
 
