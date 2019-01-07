@@ -176,7 +176,7 @@ the tick function will be passed an object (most probably the animation ref itse
 the ref object passed to tick function might have these values but with other names. for example, when the animation reference is scrolling of a specific element, the element can be passed to the animation tick function as the ref object, however it has `scrollTop`, `scrollHeight` and `clientHeight` instead of `current`, `total` and `window`. in this case, the tick function is constructed with a transform object that maps the values for `current`, `window` and `total` to the corresponding properties in the ref object.
 
 
-finally, the animation tick function will extrapolate properties described in the `frames` parameter based on values of `current`, `total` and `window`, and will set the `style` attribute on target elements. multiple **GLEIT** animations properly work with each other as to not override the values set by the other, so you can safely run multiple animations on a single element, however, the value of `style` set by other sources will be completely discarded. 
+finally, the animation tick function will extrapolate properties described in the `frames` parameter based on values of `current`, `total` and `window`, and will set the `style` attribute on target elements. multiple **GLEIT** animations properly work with each other as to not override the values set by the other, so you can safely run multiple animations on a single element, however, the value of `style` set by other sources will be completely discarded.
 
 
 **NOTE**: the animation tick function will **NOT** compute the extrapolation or set the `style` attribute on the element on the same thread as the event trigger. instead, it will utilize `requestAnimationFrame()` right after the event trigger, or will wait `1000/60` milliseconds if `requestAnimationFrame()` is not supported.
@@ -267,23 +267,23 @@ you can create your own custom animation refs and pass them to the `.on()` funct
 ```javascript
 function myCustomAnimationRef(factory) {
   var animationTick = factory(<transform object>[optional]);
-  
+
   //
   // other preparations
   //
-  
+
   eventHost.addEventListener('<event>', function(event) {
-  
+
     //
     // possible preparation of the ref object, based on `event`
     //
-    
+
     animationTick(<ref object>);
-    
+
     //
     // maybe other calculations ...
     //
-    
+
   });
 }
 
@@ -305,3 +305,14 @@ and then pass your ref object unmodified to the `animationTick` function. if you
 ```javascript
 var animationTick = factory();
 ```
+## running tests
+
+clone the repo.
+```bash
+npm i
+```
+```bash
+npm test
+```
+
+[![Build Status](https://travis-ci.org/loreanvictor/gleit.svg?branch=master)](https://travis-ci.org/loreanvictor/gleit)
