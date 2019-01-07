@@ -200,7 +200,62 @@ the animations are to be described using either the `frames` parameter or the `d
 - `px`: the raw value of current position of the animation, for example the scroll position, the x axis of the mouse cursor, etc. will be equal to the `current` value on the ref object. this unit is for readability and is equal to not setting any unit.
 - `%`: will refer to the percentage of the completion of the animation, like the scroll position percentage of the whole scroll height. will be equal to `current/total*100` on the ref object.
 - `vw` | `vh`: will refer to the position of the animation based on the animation window. for example, in case of scrolling, this will mean _how many vh's have we scrolled_. note that these are not the same as CSS `vw` and `vh`, as they are IDENTICAL to each other, and also they refer to the window of the animation reference and not the global `window` object. so for example, when horizontally scrolling on a specific element, both `50vw` and `50vh` mean _half of the width of that element_ and not the browser window. will be equal to `current/window*100` on the ref object.
-- `w`: like `vw` or `vh`, just not multiplied by 100. so `1w`=`100vw`=`100vh`.
+- `w`: like `vw` or `vh`, just not multiplied by 100. so `1w = 100vw = 100vh`.
 - `ms`: like `px`, added for readability on time-based animations.
-- `s`: `1s`=`1000ms`. added for readability on time-based animations.
-- `m`: `1m`=`60s`. added for readability on time-based animations.
+- `s`: `1s = 1000ms`. added for readability on time-based animations.
+- `m`: `1m = 60s`. added for readability on time-based animations.
+
+
+the properties can be one of the following:
+
+- `translateX`, `translateY`
+- `scale`: if present, `scaleX` and `scaleY` values will be ignored.
+- `scaleX`, `scaleY`
+- `rotate`: if present, `rotateX`, `rotateY` and `rotateZ` values will be ignored.
+- `rotateX`, `rotateY`, `rotateZ`
+- `opacity`
+
+the values for these properties should be of the same format you would set in CSS as these will be set in the style attribute of the animated elements in the end:
+
+```javascript
+{
+  "translateX": "128px",
+  "translateY": "20vh",
+  "scale": 2,
+  "opacity": 0.5,
+  "rotateZ": "60deg",
+  ...
+}
+```
+
+**NOTE**: the `vw` and `vh` units on `translateX` and `translateY` properties are the CSS units, not those used in the frame keys. although most of the time these two will be the same, they are not necessarily always the same and should not be confused.
+
+
+the value for each property will be extrapolated based on values set in the frames with closest bigger and smaller frame key values with regards to the current animation position. properties are animated independently and only frames that set the value for a property are considered while animating it, so not all properties are required to be specified in all frames. if the current position of the animation is smaller or bigger than the frames specifying a property with smallest or biggest frame keys, the value of the closest frame will be used (so animated values basically cap in case of overflow/underflow).
+
+### animation references
+
+the following animation references are shipped by default with **GLEIT**:
+
+#### `gleit.verticalScroll(<host>[optional])`
+
+will bind to the vertical scroll of the host element. if not given, the whole page will be used. the `current` value will be the `scrollTop` of the host, `total` the `scrollHeight` and `window` the `clientHeight`.
+
+#### `gleit.horizontalScroll(<host>[optional])`
+
+like `gleit.verticalScroll()`, but, ummm, horizontally. the `current` value will be `scrollLeft`, the `total` the `scrollWidth` and `window` the `clientWidth`.
+
+#### `gleit.mouseMove.client.x` | `gleit.mouseMove.client.y`
+
+will bind to `x` | `y` axis of the mouse cursor. `window` and `total` would be the `clientWidth` | `clientHeight` of the browser.
+
+#### `gleit.mouseMove.page.x` | `gleit.mouseMove.page.y`
+
+like `gleit.mouseMove.client.x` | `gliet.mouseMove.client.y`, with the difference being `pageX` | `pageY` of the cursor will be used instead, and the `total` value will also be the `scrollWidth` | `scrollHeight` of the page.
+
+#### `gleit.timeline(<duration>, <options>[optional])`
+
+will bind the animation to a specific timeline. `duration` should be the number of milliseconds or of the format `"<value><unit>"` with `unit` being one of `ms`, `s` and `m`. `options` can be either `{ loop: true }` or `{ bounce: true }`.
+
+
+**NOTE**: this specific animation ref is written mostly as an example for custom animation refs, since all the capabilities it provides are better provided in CSS3. you can check the code [here](lib/ref/time.js). however, in the off-chance that you would want some interactive animation on an element who also has some time-based animation, you would need to use this since **GLEIT** would override all transform properties set with CSS3 animations.
