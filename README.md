@@ -1,4 +1,4 @@
-# gleit
+# GLEIT
 
 super easy interactive html animations, based on vertical scroll, mouse position, etc.
 
@@ -130,50 +130,51 @@ will scale the `<p>` element up, but the animation is bound to scrolling of `#ho
 </script>
 ```
 
-## API
-
-### how it generally works
+## how it generally works
 
 ```javascript
-gleit.animate(<target(s)>[optional], <animation>[optional]).on(<animation ref>);
+gleit.animate(<target(s)>[optional], <frames>[optional]).on(<animation ref>);
 ```
 
-for using `gleit`, you must first create an animation object using `gleit.animate()` function, and then bind that animation to one or more animation references (animation refs in short) using the `.on()` function on the animation object. for animation refs, you can use built-in refs in `gleit` such as `gleit.verticalScroll()` or `gleit.mouseMove.client.x`, or you can build your own custom animation refs based on other user interactions or composite interactions (see below).
+first, you create an animation object by calling `gleit.animate()` function. you can pass an element or a list of elements (or an `HTMLCollection` or a `NodeList`) objects to it as the `target` elements to be animated, and a description of the `frames` in your animation (see examples above). you then use the `.on()` function on the animation object to bind it to some _animation reference_ (_animation ref_ for short). an _animation ref_ can be the page's vertical scroll, the x axis of the mouse cursor, etc.
 
-animation refs bind to a specific event (such as page scroll or mouse movement). on each trigger of the event, a generated animation tick function will be invoked on a _ref object_ provided by the animation ref itself. these objects generally have three properties:
 
-- `current`: the current value of the interactive animation, e.g. the time position, the raw scroll position, cursor position on x axis, etc. should be normalized starting from zero.
-- `total`: the max value that `current` can assume, e.g. the scroll height of the document, the maximum x the cursor can obtain, etc.
-- `window`: the width of a _window_ for the `current` value depending on the ref, e.g. the window height in scroll. if not provided, `total` will be used instead of `window`.
+if you do not pass the `frames` parameter, the value of `data-gleit` attribute on each target element will be used for that target element, and elements without `data-gleit` attribute will be skipped. the value of `data-gleit` should be the same `frames` description, except that it should be in strict JSON format:
 
-note that the ref object might have different names for these values (for example, in case of animation based on element scroll, the ref object is the host element itself, which has `scrollTop`, `scrollHeight` and `clientHeight` properties instead of `current`, `total` and `window` respectively), in which case a `transform` object should be passed to the tick function so that it reads the correct properties.
+```html
+<!-- this is wrong because ' character is not JSON standard. -->
+<p data-gleit="{'0%': {'rotate': '45deg', 'opacity': 0.5}, '100%': {'rotate': '135deg', 'opacity': 1}}"></p>
 
-the generated tick function then uses the ref object to extrapolate certain css values (see below) based on animation description and apply it to the animated element using the `style` attribute. note that although multiple `gleit` animations will work properly with each other, the `style` attribute is generally overriden by `gleit` on animated elements. additionally, since `gleit` overrides the `transform` property on animated elements, the css `transform` value on animated elements is usually overriden.
+<!-- this is wrong because all keys must be escaped in double quotes in JSON -->
+<p data-gleit='{"0%": {rotate: "45deg", opacity: 0.5}, "100%": {rotate: "135deg", opacity: 1}}'></p>
 
-### `gleit.animate(target, frames)`
+<!-- this is wrong because JSON doesn't like .5 -->
+<p data-gleit='{"0%": {"rotate": "45deg", "opacity": .5}, "100%": {"rotate": "135deg", "opacity": 1}}'></p>
 
-#### parameter `target`
-_optional_  
-can be a single HTML element, an array of elements, an `HTMLCollection` or a `NodeList`.
-```javascript
-gleit.animate(document.getElementById('<id>'));
-gleit.animate(document.getElementsByClassName('<class name>'));
-gleit.animate(document.querySelectorAll('<css query>');
+<!-- CORRECT VERSION -->
+<p data-gleit='{"0%": {"rotate": "45deg", "opacity": 0.5}, "100%": {"rotate": "135deg", "opacity": 1}}'></p>
 ```
-calling `gleit.animate()` without passing the `target` parameter is equivalent of calling
-```javascript
-gleit.animate(document.querySelectorAll('[data-gleit]');
-```
-so it will also not work on browsers not supporting `document.querySelectorAll`.
 
-#### parameter `frames`
-_optional_  
-the description of the animation frames. the frames object should contain keys for each frame, which should be of the form `<value><unit>`. `<value>` should be a number, and `<unit>` must be either non-present or one of the following:
 
-- `px`
-- `%`
-- `vw` & `vh`
-- `w`
-- `s`
-- `ms`
-- `m`
+if you do not pass the `target` parameter, all elements with `data-gleit` attribute set on them will be animated.
+
+### what GLEIT does
+
+**GLEIT** generates an animation tick function with the invokation of `gleit.animate()`, and wraps it in the returned animation object. when `.on()` is invoked on that animation object, the animation tick function is passed to the animation ref, which should bind it to an event and invoke it on every trigger of that event. for example, `gleit.verticalScroll()` will bind the tick function to `'scroll'` event of the `window`, `gleit.mouseMove.client.x` will bind to `'mousemove'` event of the `window`, etc.
+
+
+the tick function will be passed an object (most probably the animation ref itself) with the following properties:
+- `current`: which is the current value of the animation, like the scroll position, the x of the mouse cursor, etc. the value of `current` should be normalized to start at zero.
+- `total`: the maximum value for `current`, like the scroll height of the document in case of scrolling, or the width of the window in case of mouse cursor's x axis.
+- `window`: a recurrent _window_ for the value of _current_, for example the height of the window in case of scrolling. if not passed, the value of `total` will be used.
+
+the ref object passed to tick function might have these values but with other names. for example, when the animation reference is scrolling of a specific element, the element can be passed to the animation tick function as the ref object, however it has `scrollTop`, `scrollHeight` and `clientHeight` instead of `current`, `total` and `window`. in this case, the tick function is constructed with a transform object that maps the values for `current`, `window` and `total` to the corresponding properties in the ref object.
+
+
+finally, the animation tick function will extrapolate properties described in the `frames` parameter based on values of `current`, `total` and `window`, and will set the `style` attribute on target elements. multiple **GLEIT** animations properly work with each other as to not override the values set by the other, so you can safely run multiple animations on a single element, however, the value of `style` set by other sources will be completely discarded. 
+
+
+**NOTE**: the animation tick function will **NOT** compute the extrapolation or set the `style` attribute on the element on the same thread as the event trigger. instead, it will utilize `requestAnimationFrame()` right after the event trigger, or will wait `1000/60` milliseconds if `requestAnimationFrame()` is not supported.
+
+
+**NOTE**: the animation tick function will override the `style` attribute on the animated elements. additionally, it will (most probably) set the `transform` style attribute on the elements, which means values set for `transform` in CSS will be overriden as well.
