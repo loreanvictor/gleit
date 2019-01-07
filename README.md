@@ -183,3 +183,24 @@ finally, the animation tick function will extrapolate properties described in th
 
 
 **NOTE**: the animation tick function will override the `style` attribute on the animated elements. additionally, it will (most probably) set the `transform` style attribute on the elements, which means values set for `transform` in CSS will be overriden as well.
+
+### animation description format
+
+```javascript
+{
+  "<frame key>": {
+    "<property>": "<value><unit>" | <value (number)>,
+    ...
+  },
+  ...
+}
+```
+the animations are to be described using either the `frames` parameter or the `data-gleit` attribute on the elements, mapping each frame key to a set of properties. the frame key should be a string of the format `"<value><unit[optional]>"`, and the format must be consistent among all set frame keys, so for example the same `unit` must be used. the interpretation of the `unit` depends on the _animation ref_, and if present, it must be one of the following:
+
+- `px`: the raw value of current position of the animation, for example the scroll position, the x axis of the mouse cursor, etc. will be equal to the `current` value on the ref object. this unit is for readability and is equal to not setting any unit.
+- `%`: will refer to the percentage of the completion of the animation, like the scroll position percentage of the whole scroll height. will be equal to `current/total*100` on the ref object.
+- `vw` | `vh`: will refer to the position of the animation based on the animation window. for example, in case of scrolling, this will mean _how many vh's have we scrolled_. note that these are not the same as CSS `vw` and `vh`, as they are IDENTICAL to each other, and also they refer to the window of the animation reference and not the global `window` object. so for example, when horizontally scrolling on a specific element, both `50vw` and `50vh` mean _half of the width of that element_ and not the browser window. will be equal to `current/window*100` on the ref object.
+- `w`: like `vw` or `vh`, just not multiplied by 100. so `1w`=`100vw`=`100vh`.
+- `ms`: like `px`, added for readability on time-based animations.
+- `s`: `1s`=`1000ms`. added for readability on time-based animations.
+- `m`: `1m`=`60s`. added for readability on time-based animations.
