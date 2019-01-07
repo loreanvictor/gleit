@@ -1,6 +1,6 @@
 # GLEIT
 
-super easy interactive html animations, based on vertical scroll, mouse position, etc.
+super easy interactive html animations, based on vertical scroll, mouse position, etc. checkout [here](https://loreanvictor.github.io/gleit/) for some demo of cool interactive animations built with **GLEIT**.
 
 ## how to install
 
