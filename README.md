@@ -156,7 +156,12 @@ if you do not pass the `frames` parameter, the value of `data-gleit` attribute o
 ```
 
 
-if you do not pass the `target` parameter, all elements with `data-gleit` attribute set on them will be animated.
+if you do not pass the `target` parameter, all elements with `data-gleit` attribute set on them will be animated. hence, the following statements essentially do the same thing:
+
+```javascript
+gleit.animate();
+gleit.animate(document.querySelectorAll('[data-gleit]'));
+```
 
 ### what GLEIT does
 
