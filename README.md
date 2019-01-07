@@ -259,3 +259,49 @@ will bind the animation to a specific timeline. `duration` should be the number 
 
 
 **NOTE**: this specific animation ref is written mostly as an example for custom animation refs, since all the capabilities it provides are better provided in CSS3. you can check the code [here](lib/ref/time.js). however, in the off-chance that you would want some interactive animation on an element who also has some time-based animation, you would need to use this since **GLEIT** would override all transform properties set with CSS3 animations.
+
+## custom animation refs
+
+you can create your own custom animation refs and pass them to the `.on()` function of animation objects. you can checkout any of the default animation refs [here](lib/ref). generally, your ref needs to be something like this:
+
+```javascript
+function myCustomAnimationRef(factory) {
+  var animationTick = factory(<transform object>[optional]);
+  
+  //
+  // other preparations
+  //
+  
+  eventHost.addEventListener('<event>', function(event) {
+  
+    //
+    // possible preparation of the ref object, based on `event`
+    //
+    
+    animationTick(<ref object>);
+    
+    //
+    // maybe other calculations ...
+    //
+    
+  });
+}
+
+gleit.animate().on(myCustomAnimationRef);
+```
+
+so basically, you are given a `factory` function that you can use to generate the `animationTick` function, and you should specify how and when to call that `animationTick` function. you need to pass to it a `ref object`, which should have the `current`, `total`, and optionally the `window` properties. your `ref object` might have other properties that are not named as such, in which case you can pass a `transform` object to the `factory` function, specifying your mapping:
+
+```javascript
+var animationTick = factory({
+  current: '<my current property>',
+  total: '<my total property>',
+  window: '<my window property>'
+});
+```
+
+and then pass your ref object unmodified to the `animationTick` function. if you do not want to pass a `transform`, you can simply create the `animationTick` function without passing any arguments to the `factory` function:
+
+```javascript
+var animationTick = factory();
+```
