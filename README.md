@@ -165,7 +165,7 @@ gleit.animate(document.querySelectorAll('[data-gleit]'));
 
 ### what GLEIT does
 
-**GLEIT** generates an animation tick function with the invokation of `gleit.animate()`, and wraps it in the returned animation object. when `.on()` is invoked on that animation object, the animation tick function is passed to the animation ref, which should bind it to an event and invoke it on every trigger of that event. for example, `gleit.verticalScroll()` will bind the tick function to `'scroll'` event of the `window`, `gleit.mouseMove.client.x` will bind to `'mousemove'` event of the `window`, etc.
+**GLEIT** generates an animation tick function with the invocation of `gleit.animate()`, and wraps it in the returned animation object. when `.on()` is invoked on that animation object, the animation tick function is passed to the animation ref, which should bind it to an event and invoke it on every trigger of that event. for example, `gleit.verticalScroll()` will bind the tick function to `'scroll'` event of the `window`, `gleit.mouseMove.client.x` will bind to `'mousemove'` event of the `window`, etc.
 
 
 the tick function will be passed an object (most probably the animation ref itself) with the following properties:
